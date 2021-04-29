@@ -1,2 +1,3 @@
-# FTTProjects
-This project will contain some of my FTT University projects. I'll make a monorepo hera, since sometimes I'll need to work with some friends.
+# Gamble Game
+This game has the purpose, both for Statistics and POO study.
+It'll be a machine slot machine, with a certain probability to lose money.
