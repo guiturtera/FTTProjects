@@ -19,7 +19,8 @@ namespace GambleGame
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            UCColumn uc = new UCColumn();
+            Fruit[] fruits = FruitsFactory.CreateDefaultFruits();
+            UCColumn uc = new UCColumn(fruits);
             this.Controls.Add(uc);
             uc.Visible = true;
         }
