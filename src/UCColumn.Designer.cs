@@ -44,5 +44,7 @@ namespace GambleGame
         }
 
         #endregion
+
+        private System.Windows.Forms.Timer timer1;
     }
 }

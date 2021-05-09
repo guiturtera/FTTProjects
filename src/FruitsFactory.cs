@@ -12,9 +12,9 @@ namespace GambleGame
         public static Fruit[] CreateDefaultFruits()
         {
             Fruit[] fruits = new Fruit[3];
-            fruits[(int)EnumFruitType.Banana] = new Fruit(ASSETS_PATH + "banana", EnumFruitType.Banana, 3.0, 3);
-            fruits[(int)EnumFruitType.Apple] = new Fruit(ASSETS_PATH + "apple", EnumFruitType.Apple, 1.0, 6);
-            fruits[(int)EnumFruitType.Orange] = new Fruit(ASSETS_PATH + "orange", EnumFruitType.Orange, 5.0, 1);
+            fruits[(int)EnumFruitType.Banana] = new Fruit(ASSETS_PATH + "banana.png", EnumFruitType.Banana, 3.0, 3);
+            fruits[(int)EnumFruitType.Apple] = new Fruit(ASSETS_PATH + "apple.png", EnumFruitType.Apple, 1.0, 6);
+            fruits[(int)EnumFruitType.Orange] = new Fruit(ASSETS_PATH + "orange.png", EnumFruitType.Orange, 5.0, 1);
 
             return fruits;
         }
