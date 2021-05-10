@@ -18,9 +18,11 @@ namespace GambleGame
             InitializeComponent();
         }
 
-        int cont = 0, randomNumber;
+        int cont = 0;
         Fruit[] fruits;
         UCColumn[] columns;
+        Random random;
+        int minNumber = 200;
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -47,7 +49,7 @@ namespace GambleGame
 
         private void StartRaffle()
         {
-            randomNumber = new Random().Next(50, 100);
+            random = new Random();
             timer1.Enabled = true;
             timer1.Start();
         }
@@ -59,10 +61,12 @@ namespace GambleGame
                 timer1.Stop();
                 timer1.Enabled = false;
                 cont = 0;
+                minNumber = 200;
             }
             else
             {
-                columns[cont].StartRaffle(randomNumber);
+                minNumber = random.Next(minNumber, 400);
+                columns[cont].StartRaffle(minNumber);
                 cont++;
             }
         }

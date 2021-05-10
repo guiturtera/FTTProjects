@@ -35,7 +35,7 @@ namespace GambleGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Name = "UCColumn";
             this.Size = new System.Drawing.Size(125, 375);
             this.Load += new System.EventHandler(this.UCColumn_Load);
