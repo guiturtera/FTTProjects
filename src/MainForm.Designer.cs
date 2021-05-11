@@ -30,42 +30,43 @@ namespace GambleGame
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.btnStartBtn = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.picLever = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.picLever)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnStartBtn
-            // 
-            this.btnStartBtn.Location = new System.Drawing.Point(699, 359);
-            this.btnStartBtn.Name = "btnStartBtn";
-            this.btnStartBtn.Size = new System.Drawing.Size(75, 23);
-            this.btnStartBtn.TabIndex = 0;
-            this.btnStartBtn.Text = "Start";
-            this.btnStartBtn.UseVisualStyleBackColor = true;
-            this.btnStartBtn.Click += new System.EventHandler(this.btnStartBtn_Click);
             // 
             // timer1
             // 
-            this.timer1.Interval = 200;
+            this.timer1.Interval = 500;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // picLever
+            // 
+            this.picLever.Location = new System.Drawing.Point(415, 98);
+            this.picLever.Name = "picLever";
+            this.picLever.Size = new System.Drawing.Size(220, 242);
+            this.picLever.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picLever.TabIndex = 0;
+            this.picLever.TabStop = false;
+            this.picLever.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(804, 576);
-            this.Controls.Add(this.btnStartBtn);
+            this.ClientSize = new System.Drawing.Size(658, 455);
+            this.Controls.Add(this.picLever);
             this.Name = "MainForm";
             this.Text = "Roleta do tio Zé";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.picLever)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnStartBtn;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.PictureBox picLever;
     }
 }
 

@@ -14,10 +14,10 @@ namespace GambleGame
     {
         Image image;
         EnumFruitType fruitName;
-        double fruitValue;
+        int fruitValue;
         int fruitAmount;
 
-        public Fruit(string imgUrl, EnumFruitType fruitName, double fruitValue, int fruitAmount)
+        public Fruit(string imgUrl, EnumFruitType fruitName, int fruitValue, int fruitAmount)
         {
             this.image = Image.FromFile(imgUrl);
             this.fruitName = fruitName;
@@ -30,7 +30,8 @@ namespace GambleGame
             return image;
         }
 
-        public double Value { get { return fruitValue; }  }
+        public EnumFruitType FruitType { get { return fruitName; } }
+        public int Value { get { return fruitValue; }  }
         public int FruitAmount { get { return fruitAmount; } }
     }
 }

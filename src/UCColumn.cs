@@ -12,25 +12,29 @@ namespace GambleGame
 {
     public partial class UCColumn : UserControl
     {
-        private const int SQUARE_SIZE = 125;
-        private const int SIMULATED_PIC = 5;
-        Panel mainPanel;
-        Fruit[] fruits;
-        PictureBox[] picBox;
-        EnumFruitType[] order;
-        int picBoxLength, randomOrder, currentPosition = SIMULATED_PIC - 1, currentHeight = 0;
+        private const int SquareSize = 125;
+        private const int SimulatedPic = 5;
+
+        private Random randomObj;
+        private Fruit[] fruits;
+        private PictureBox[] picBox;
+        private EnumFruitType[] order;
+
+        int picBoxLength, randomOrder, currentPosition = SimulatedPic - 1;
+        int wayToMove, absoluteDistanceToMove;
 
         public EnumFruitType RaffledFruit { get; private set;  }
 
-        Timer timer = new Timer();
+        Timer timer = new Timer(), correctTimer;
 
-        public UCColumn(Fruit[] fruits)
+        public UCColumn(Fruit[] fruits, Random random)
         {
             InitializeComponent();
 
             if (fruits == null)
                 throw new Exception("Show a valid picturetype!");
 
+            this.randomObj = random;
             this.fruits = fruits;
             this.picBoxLength = GetPicBoxLength();
             this.order = GetRandomPicOrder(picBoxLength);
@@ -42,7 +46,6 @@ namespace GambleGame
         private void timer_Tick(object sender, EventArgs e)
         {
             randomOrder--;
-            currentHeight += randomOrder / 3;
             MovePicBoxInVertical(randomOrder / 3);
             MovePicBoxToBottom();
 
@@ -58,38 +61,46 @@ namespace GambleGame
         {
             foreach (PictureBox pic in picBox)
             {
-                if (pic.Location.Y <= -125)
+                if (pic.Location.Y <= -SquareSize)
                 {
-                    pic.Location = new Point(pic.Location.X, pic.Location.Y + SQUARE_SIZE * SIMULATED_PIC);
+                    pic.Location = new Point(pic.Location.X, pic.Location.Y + SquareSize * SimulatedPic);
                     pic.Image = fruits[(int)order[currentPosition]].GetImage();
                     pic.Tag = (int)order[currentPosition];
-                    currentPosition = (currentPosition + 1) % 10;
+                    currentPosition = (currentPosition + 1) % picBoxLength;
                 }
             }
         }
 
-        int wayToMove, absoluteDistanceToMove;
         private void PositionRaffledFruit()
         {
             PictureBox raffledPic = GetRaffledPic();
             RaffledFruit = (EnumFruitType)int.Parse(raffledPic.Tag.ToString());
 
-            wayToMove = (125 - raffledPic.Location.Y) < 0 ? 1 : -1;
-            absoluteDistanceToMove = Math.Abs(125 - raffledPic.Location.Y);
+            wayToMove = (SquareSize - raffledPic.Location.Y) < 0 ? 1 : -1;
+            absoluteDistanceToMove = Math.Abs(SquareSize - raffledPic.Location.Y);
 
+            StartTimer(out correctTimer, 15, correctTimer_Tick);
+        }
 
-            Timer correctTimer = new Timer();
-            correctTimer.Tick += new EventHandler((object sender, EventArgs e) =>
-            {
-                if (absoluteDistanceToMove == 0)
-                    correctTimer.Stop();
+        private void StartTimer(out Timer timer, int interval, Action<object, EventArgs> Timer_Tick)
+        {
+            timer = new Timer();
+            timer.Tick += new EventHandler(Timer_Tick);
+            timer.Interval = interval;
+            timer.Enabled = true;
+            timer.Start();
+        }
 
-                MovePicBoxInVertical(wayToMove);
-                absoluteDistanceToMove--;
-            });
-            correctTimer.Interval = 20;
-            correctTimer.Enabled = true;
-            correctTimer.Start();
+        private void correctTimer_Tick(object sender, EventArgs e)
+        {
+            if (absoluteDistanceToMove == 0)
+            { 
+                correctTimer.Stop();
+                ColumnsResult.SetResult(fruits[(int)RaffledFruit]);
+            }
+
+            MovePicBoxInVertical(wayToMove);
+            absoluteDistanceToMove--;
         }
 
         private void MovePicBoxInVertical(int amountToChange)
@@ -103,10 +114,10 @@ namespace GambleGame
         private PictureBox GetRaffledPic()
         {
             PictureBox raffledPic = picBox[0];
-            int lowerDistance = 125;
+            int lowerDistance = SquareSize;
             for (int i = 0; i < picBox.Length; i++)
             {
-                int compareDistance = Math.Abs(125 - picBox[i].Location.Y);
+                int compareDistance = Math.Abs(SquareSize - picBox[i].Location.Y);
                 if (compareDistance < lowerDistance)
                 {
                     lowerDistance = compareDistance;
@@ -128,7 +139,7 @@ namespace GambleGame
             EnumFruitType[] aux = new EnumFruitType[picboxLength];
             for (int i = 0; i < picboxLength; i++)
             {
-                aux[random[i]] = defaultOrder[i];
+                aux[i] = defaultOrder[random[i]];
             }
             return aux;
         }
@@ -156,19 +167,17 @@ namespace GambleGame
 
         private int[] GetRandomArray(int start, int length)
         {
-            Random rdm = new Random();
             HashSet<int> hash = new HashSet<int>();
             List<int> aux = new List<int>();
             while (hash.Count<length)
             {
-                int random = rdm.Next(start, length);
+                int random = randomObj.Next(start, length);
                 if (hash.Add(random))
                     aux.Add(random);
             } 
             return aux.ToArray();
         }
 
-        
         private int GetPicBoxLength()
         {
            int picBoxLength = 0;
@@ -185,25 +194,17 @@ namespace GambleGame
 
         private void CreatePictureBoxes()
         {
-            /*mainPanel = new Panel();
-            mainPanel.Location = new Point(0, 0);
-            mainPanel.Size = new Size(125, 125 * order.Length);
-            mainPanel.TabIndex = 0;
-            mainPanel.Parent = this;
-            this.Controls.Add(mainPanel);*/
-
-            picBox = new PictureBox[SIMULATED_PIC];
-            for (int i = 0; i < SIMULATED_PIC; i++)
+            picBox = new PictureBox[SimulatedPic];
+            for (int i = 0; i < SimulatedPic; i++)
             {
                 picBox[i] = new PictureBox();
-                picBox[i].Size = new Size(125, 125);
-                picBox[i].Location = new Point(0, 125 * i);
+                picBox[i].Size = new Size(SquareSize, SquareSize);
+                picBox[i].Location = new Point(0, SquareSize * i);
                 picBox[i].Name = "pictureBox1";
                 picBox[i].TabIndex = 0;
                 picBox[i].TabStop = false;
                 picBox[i].SizeMode = PictureBoxSizeMode.StretchImage;
                 picBox[i].Image = fruits[(int)order[i]].GetImage();
-                //picBox[i].Parent = mainPanel;
                 picBox[i].Parent = this;
                 picBox[i].Tag = (int)order[i];
                 this.Controls.Add(picBox[i]);
