@@ -23,6 +23,7 @@ namespace GambleGame
             this.fruitName = fruitName;
             this.fruitValue = fruitValue;
             this.fruitAmount = fruitAmount;
+            
         }
 
         public Image GetImage()

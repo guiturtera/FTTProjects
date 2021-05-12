@@ -10,6 +10,8 @@ namespace GambleGame
 
     public static class ColumnsResult
     {
+       
+
         public static event RaffleFinished RaffleFinished;
         public static int RafflePrize { get; private set; }
         public static int SetColumnAmount 

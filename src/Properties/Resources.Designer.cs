@@ -63,9 +63,109 @@ namespace GambleGame.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DefaultLever {
+        internal static System.Drawing.Bitmap Amarelo {
             get {
-                object obj = ResourceManager.GetObject("DefaultLever", resourceCulture);
+                object obj = ResourceManager.GetObject("Amarelo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Cassino {
+            get {
+                object obj = ResourceManager.GetObject("Cassino", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap coin_master {
+            get {
+                object obj = ResourceManager.GetObject("coin master", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cooltext383820993124721 {
+            get {
+                object obj = ResourceManager.GetObject("cooltext383820993124721", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cooltext383824401935480 {
+            get {
+                object obj = ResourceManager.GetObject("cooltext383824401935480", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cooltext383824880713683 {
+            get {
+                object obj = ResourceManager.GetObject("cooltext383824880713683", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cooltext383824955456837 {
+            get {
+                object obj = ResourceManager.GetObject("cooltext383824955456837", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cooltext383825510387036 {
+            get {
+                object obj = ResourceManager.GetObject("cooltext383825510387036", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cooltext383825668175655 {
+            get {
+                object obj = ResourceManager.GetObject("cooltext383825668175655", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cooltext383825689106935 {
+            get {
+                object obj = ResourceManager.GetObject("cooltext383825689106935", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tijolo_com_fundo_de_brilho_led_93536_287 {
+            get {
+                object obj = ResourceManager.GetObject("tijolo-com-fundo-de-brilho-led_93536-287", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
