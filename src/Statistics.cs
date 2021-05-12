@@ -12,6 +12,7 @@ namespace GambleGame
 {
     public partial class Statistics : Form
     {
+        DataTable table;
         private int apple = 0;
         private int banana = 0;
         private int orange = 0;
@@ -19,6 +20,44 @@ namespace GambleGame
         public Statistics()
         {
             InitializeComponent();
+            InitializeEsperanca();
+        }
+
+        private void InitializeEsperanca()
+        {
+            table = new DataTable();
+            table.Columns.Add("X", typeof(double));
+            table.Columns.Add("P(X)", typeof(double));
+            table.Columns.Add("E(X) [X * P(X)]", typeof(double));
+
+            AddRow(4, 0.001);
+            AddRow(2, 0.027);
+            AddRow(0, 0.216);
+            AddRow(-1, 0.756);
+            SomaEsperanca();
+
+            dataGridView1.DataSource = table;
+        }
+
+        private void SomaEsperanca()
+        {
+            double count = 0;
+            DataRow row = table.NewRow();
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                count += table.Rows[i].Field<double>("E(X) [X * P(X)]");
+            }
+            row["E(X) [X * P(X)]"] = count;
+            table.Rows.Add(row);
+        }
+
+        private void AddRow(double x, double px)
+        {
+            DataRow row = table.NewRow();
+            row["X"] = x;//4;
+            row["P(X)"] = px;
+            row["E(X) [X * P(X)]"] = x * px;
+            table.Rows.Add(row);
         }
 
         private void Statistics_Load(object sender, EventArgs e)
